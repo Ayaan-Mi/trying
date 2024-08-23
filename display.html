@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display User Information</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="display.html">View Data</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Stored User Information</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+                <!-- User data will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Retrieve users from localStorage
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Get table body element
+        const tableBody = document.getElementById('userTableBody');
+
+        // Populate table with user data
+        users.forEach(user => {
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${user.name}</td>
+                <td>${user.age}</td>
+                <td>${user.email}</td>
+                <td>${user.phone}</td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>
